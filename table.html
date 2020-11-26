@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>表格</title>
+</head>
+<style>
+  .main {
+    margin: 50px auto;
+    width: 80%;
+    height: 500px;
+  }
+  table {
+    width: 100%;
+    height: content-box;
+    background-color: white;
+    border-color: #222222;
+    border-bottom-width: 1px;
+  }
+  table thead {
+    text-align: center;
+    font-size: 4px;
+  }
+
+</style>
+
+
+<body>
+  <div class="main">
+      <table id="valida">
+        <thead>
+
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+  </div>
+</body>
+<script>
+  //主备表头数据
+
+
+  let theadData= [["字段中文名","中介机构代码*(50)","所属分支机构代码*(30)","中介机构名称*(200)","中介机构地址*(200)","中介机构类别*(50)","中介机构统一编码*(50)","中介机构证件类型*(33)","中介机构证件号码*(50)","获得中介许可证日期*"],
+    ["字段英文名","ZJJGDM","SSFZJGDM","ZJJGMC","ZJJGDZ","ZJJGLB","ZJJGTYBM","ZJJGZJLX","ZJJGZJHM","HDZJXKZRQ"]]
+
+  //找到显示得表
+  let myTable = document.getElementById("valida")
+  //获得表头
+  let myThead = myTable.firstElementChild //table中就两个节点获取第一节点不是获取childNode（node节点会包含一些隐藏得text域）
+
+  let tr = document.createElement("tr")//创建一个tr节点
+
+
+
+
+
+</script>
+</html>
