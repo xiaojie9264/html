@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        th,td {
+            width: 100px;
+            height: 10px;
+        }
+        .fs11 {
+            font-size: 11px;
+        }
+        tr {
+            text-align: center;
+        }
+        table {
+            font-size: 10px;
+        }
+        .data { 
+            width: 90px;
+            height: 55px;
+            font-size: 15px;
+        }
+        thead th {
+            background-color: #A8A8A8;
+        }
+        .num1 {
+            background-color:  #A8A8A8;
+        }
+        tr:nth-child(n+2) {
+            background-color: #b0daf5;
+        }
+        tbody tr:nth-child(n+5) td:nth-child(1) {
+            background-color: #fff;
+        }
+        .bgc-blue {
+            background-color: #b0daf5!important;
+        }
+    </style>
+</head>
+<body>
+    <table border="1" cellspacing="0" cellpadding="10">
+        <thead>
+            <th>字段中文名</th>
+            <th>中介机构代码</th>
+            <th>所属分支机构代码</th>
+            <th>中介机构名称</th>
+            <th>中介机构地址</th>
+            <th>中介机构类别</th>
+            <th>中介机构统一代码</th>
+        </thead>
+        <tbody>
+            <tr class="num1">
+                <td>字段英文名</td>
+                <td>ZJJGDM</td>
+                <td>SSFZJGDM</td>
+                <td>ZJJGMC</td>
+                <td>ZJJGDZ</td>
+                <td>ZJJGLB</td>
+                <td>ZJJGTYDM</td>
+            </tr>
+            <tr>
+                <td class="fs11" bgcolor="#e6e6fa">※非空错误</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="fs11" bgcolor=" #e2af50">※超长错误</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="fs11">※校验通过</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td rowspan="2">
+                    <button class="data">数据校验</button>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="bgc-blue"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+        
+    </table>
+</body>
+</html>
