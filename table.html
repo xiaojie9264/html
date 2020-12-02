@@ -8,53 +8,70 @@
     .main {
         margin: 50px auto;
         width: 80%;
-        height: 500px;
     }
+
     table {
         width: 100%;
         height: content-box;
         background-color: white;
     }
+
     table thead { /*表头样式*/
         text-align: center;
         font-size: 5px;
         font-weight: bold;
         background: dimgrey;
     }
+
     table thead span { /*表头样式*/
         color: red;
     }
 
 
-    table,table tr td { /*边框样式*/
-        border:1px solid black;
+    table, table tr td { /*边框样式*/
+        border: 1px solid black;
         border-collapse: collapse;
+    }
+
+    tbody td {
+        width: 10%;
+        height: 15px;
     }
 
     .dataPass { /*验证通过*/
         text-align: center;
         font-size: 5px;
-        height: 15px;
         background: aqua;
     }
+
     .dataNull { /*验证为空*/
         text-align: center;
         font-size: 5px;
-        height: 15px;
         background: lightgrey;
     }
+
     .dataTooLong { /*数据过长*/
         text-align: center;
         font-size: 5px;
-        height: 15px;
         background: darksalmon;
     }
+
     .dataCheckBtn {
         width: 100%;
         height: 30px;
         font-size: 5px;
         font-weight: bold;
 
+    }
+
+    .inputText {
+        width: 95%;
+        height: 15px;
+        background: transparent;
+        border-style: none;
+        border-width: 0px;
+        outline-width: 0px;
+        outline-style: none;
     }
 
 </style>
@@ -76,9 +93,9 @@
     /**
      * 创建表头数据
      */
-    //主备表头数据
-    let theadData= [["字段中文名","中介机构代码*(50)","所属分支机构代码*(30)","中介机构名称*(200)","中介机构地址*(200)","中介机构类别*(50)","中介机构统一编码*(50)","中介机构证件类型*(33)","中介机构证件号码*(50)","获得中介许可证日期*"],
-        ["字段英文名","ZJJGDM","SSFZJGDM","ZJJGMC","ZJJGDZ","ZJJGLB","ZJJGTYBM","ZJJGZJLX","ZJJGZJHM","HDZJXKZRQ"]]
+        //主备表头数据
+    let theadData = [["字段中文名", "中介机构代码*(50)", "所属分支机构代码*(30)", "中介机构名称*(200)", "中介机构地址*(200)", "中介机构类别*(50)", "中介机构统一编码*(50)", "中介机构证件类型*(33)", "中介机构证件号码*(50)", "获得中介许可证日期*"],
+            ["字段英文名", "ZJJGDM", "SSFZJGDM", "ZJJGMC", "ZJJGDZ", "ZJJGLB", "ZJJGTYBM", "ZJJGZJLX", "ZJJGZJHM", "HDZJXKZRQ"]]
     //找到显示得表
     let myTable = document.getElementById("valida")
     //获得表头
@@ -91,10 +108,10 @@
             let td = document.createElement("td") // 创建一个单元格
             let str
             let index;
-            if ((index = clum.indexOf("*")) != -1 || (index = clum.indexOf("(")) != -1){
-                str = clum.substring(0,index-1).concat("<span>")
+            if ((index = clum.indexOf("*")) != -1 || (index = clum.indexOf("(")) != -1) {
+                str = clum.substring(0, index - 1).concat("<span>")
                 str += clum.substring(index).concat("</span>")
-            }else {
+            } else {
                 str = clum
             }
             td.innerHTML = str
@@ -105,8 +122,8 @@
     /**
      * 创建tbody主体
      */
-    // 准备表主体数据
-    let tbodyData = [["※非空错误","dataNull"],["※超长错误","dataTooLong"],["※校验通过","dataPass"]]
+        // 准备表主体数据
+    let tbodyData = [["※非空错误", "dataNull"], ["※超长错误", "dataTooLong"], ["※校验通过", "dataPass"]]
     // 创建一个btn
     let dataCheckBtn = document.createElement("input")
     dataCheckBtn.type = "button"
@@ -116,7 +133,7 @@
     // 获得表的主体
 
     // 表格主体行数
-    let rowCount = 100;
+    let rowCount = 20;
     // 表主体列数
     let clumCount = 10;
     let myTbody = myTable.lastElementChild // table中就两个节点,获取最后一节点不是获取childNode（node节点会包含一些隐藏得text域）
@@ -128,26 +145,31 @@
             if (i < 3 && j == 0) { // 添加主体提示文
                 td.innerHTML = tbodyData[i][0]
                 td.className = tbodyData[i][1]
-            } else if (i == 3 && j == 0){ // 添加按钮
+            } else if (i == 3 && j == 0) { // 添加按钮
                 td.rowSpan = (rowCount - i)
                 td.style = "text-align: center;vertical-align: top;"
                 td.appendChild(dataCheckBtn)
             } else { // 剩下的统一处理
-                if (j == 0){
-                    continue ; //其余时候第一行就跳过这次循环
+                if (j == 0) {
+                    continue; //其余时候第一行就跳过这次循环
                 }
+                // td.className = "dataPass"
+                let input = document.createElement("input") // 创建输入文本框
+                input.type = "text" // 设置为文本输入
+                input.className = "inputText"
+                td.appendChild(input)
                 td.className = "dataPass"
             }
             tr.appendChild(td) // 添加单元格
         }
         myTbody.appendChild(tr) // 添加行
     }
+
     /**
      * 按钮点击方法
      */
-    function dataCheck(){
-        alert("没用")
-        console.log("还没写")
+    function dataCheck() {
+
     }
 
 </script>
