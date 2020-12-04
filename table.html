@@ -182,12 +182,9 @@
         initDataStyle()
         let trs = getAllRows()
         for (let i = 0; i < trs.length; i++) {
-            if (!isEmptyRow(trs[i])) { // 不是空行进行校验
-                validData(trs[i])
-            }
+            if (!isEmptyRow(trs[i])) validData(trs[i]) // 不是空行进行校验
         }
-        let message = "校验完成：" + isNotNullCount + "处非空错误，" + isTooLongCount + "处超长错误"
-        msg.innerHTML=message
+        msg.innerHTML="校验完成：" + isNotNullCount + "处非空错误，" + isTooLongCount + "处超长错误"
         if (isNotNullCount === 0 && isTooLongCount === 0) {
             msg.setAttribute("style","color: green")
         } else {
