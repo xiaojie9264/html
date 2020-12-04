@@ -94,7 +94,7 @@
      * 创建表头数据
      */
         //主备表头数据
-    let theadData = [["字段中文名", "中介机构代码*(50)", "所属分支机构代码*(30)", "中介机构名称*(200)", "中介机构地址*(200)", "中介机构类别*(50)", "中介机构统一编码*(50)", "中介机构证件类型*(33)", "中介机构证件号码*(50)", "获得中介许可证日期*"],
+    let theadData = [["字段中文名", "中介机构代码*(50)", "所属分支机构代码*(30)", "中介机构名称*(200)", "中介机构地址(200)", "中介机构类别*(50)", "中介机构统一编码*(50)", "中介机构证件类型*(33)", "中介机构证件号码*(50)", "获得中介许可证日期*"],
             ["字段英文名", "ZJJGDM", "SSFZJGDM", "ZJJGMC", "ZJJGDZ", "ZJJGLB", "ZJJGTYBM", "ZJJGZJLX", "ZJJGZJHM", "HDZJXKZRQ"]]
     //找到显示得表
     let myTable = document.getElementById("valida")
@@ -151,14 +151,15 @@
                 td.appendChild(dataCheckBtn)
             } else { // 剩下的统一处理
                 if (j == 0) {
-                    continue; //其余时候第一行就跳过这次循环
+                    continue; //其余时候第一列就跳过这次循环
                 }
-                // td.className = "dataPass"
+                td.className = "dataPass"
                 let input = document.createElement("input") // 创建输入文本框
                 input.type = "text" // 设置为文本输入
                 input.className = "inputText"
                 td.appendChild(input)
-                td.className = "dataPass"
+
+
             }
             tr.appendChild(td) // 添加单元格
         }
@@ -169,8 +170,62 @@
      * 按钮点击方法
      */
     function dataCheck() {
-
+        // 先将所有表格初始化为通过校验
+        initDataStyle()
+        let trs = getAllRows()
+        for (let i = 0; i < trs.length; i++) {
+            if (!isEmptyRow(trs[i])) { // 不是空行进行校验
+                console.log(trs[i])
+            }
+        }
     }
+
+    /**
+     * 获取所有行
+     */
+    function getAllRows() {
+        return myTbody.getElementsByTagName("tr")
+    }
+
+    /**
+     * 获取所有列
+     */
+    function getAllColumns(tr) {
+        let tds = Object.values(tr.getElementsByTagName("td"));
+        if (tds.length == clumCount) { // 如果列数等于总列数就截取
+            return tds.slice(1) // 从下标为1的开始取
+        }
+        return tds
+    }
+
+    /**
+     * 初始化所有数据的状态
+     */
+    function initDataStyle() {
+        let trs = getAllRows()
+        for (let i = 0; i < trs.length; i++) {
+            let tds = getAllColumns(trs[i])
+            tds.forEach(item => {
+                item.className = "dataPass"
+            })
+        }
+    }
+
+    /**
+     * 判断是否是空行
+     */
+    function isEmptyRow(tr) {
+        let result = true // 默认为空行
+        let tds = getAllColumns(tr)
+        tds.forEach(item => {
+            let input = item.firstElementChild
+            if (input.value != null && input.value != "" && result) {
+                result = !result; // 如果值不为空和空字符串的情况就是有值
+            }
+        })
+        return result
+    }
+
 
 </script>
 </html>
