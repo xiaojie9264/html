@@ -182,10 +182,12 @@
         initDataStyle()
         let trs = getAllRows()
         for (let i = 0; i < trs.length; i++) {
-             // 不是空行进行校验
-            if (!isEmptyRow(trs[i])) validData(trs[i])
+            if (!isEmptyRow(trs[i])) { // 不是空行进行校验
+                validData(trs[i])
+            }
         }
-        msg.innerHTML="校验完成：" + isNotNullCount + "处非空错误，" + isTooLongCount + "处超长错误"
+        let message = "校验完成：" + isNotNullCount + "处非空错误，" + isTooLongCount + "处超长错误"
+        msg.innerHTML=message
         if (isNotNullCount === 0 && isTooLongCount === 0) {
             msg.setAttribute("style","color: green")
         } else {
@@ -196,7 +198,9 @@
     /**
      * 获取所有行
      */
-    const getAllRows = () => myTbody.getElementsByTagName("tr");
+    function getAllRows() {
+        return myTbody.getElementsByTagName("tr")
+    }
 
     /**
      * 获取所有列
@@ -266,14 +270,18 @@
      * 判断非空
      * @param val 传入的值
      */
-    const isNotNull = val => val != null && val !== "";
+    function isNotNull(val) {
+        return val != null && val !== ""
+    }
 
     /**
      * 判断是否超长
      * @param val 传入值
      * @param len 做大长度
      */
-    const isTooLong = (val, len) => val.length > parseInt(len);
+    function isTooLong(val, len) {
+        return val.length > parseInt(len)
+    }
 
 </script>
 </html>
