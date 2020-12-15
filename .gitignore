@@ -1,2 +1,5 @@
 #屏蔽webstorm文件
 .idea
+
+#屏蔽掉vscode的专属文件
+.vscode/*
