@@ -195,9 +195,7 @@
     /**
      * 获取所有行
      */
-    function getAllRows() {
-        return myTbody.getElementsByTagName("tr")
-    }
+    const getAllRows = () => myTbody.getElementsByTagName("tr");
 
     /**
      * 获取所有列
@@ -267,18 +265,14 @@
      * 判断非空
      * @param val 传入的值
      */
-    function isNotNull(val) {
-        return val != null && val !== ""
-    }
+    const isNotNull = val => val != null && val !== "";
 
     /**
      * 判断是否超长
      * @param val 传入值
      * @param len 做大长度
      */
-    function isTooLong(val, len) {
-        return val.length > parseInt(len)
-    }
+    const isTooLong = (val, len) => val.length > parseInt(len);
 
 </script>
 </html>
