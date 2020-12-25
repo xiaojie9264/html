@@ -29,14 +29,14 @@
         .num1 {
             background-color:  #A8A8A8;
         }
-        tr:nth-child(n+2) {
-            background-color: #b0daf5;
+        .nullero {
+            background-color: #e6e6fa;
         }
-        tbody tr:nth-child(n+5) td:nth-child(1) {
-            background-color: #fff;
+        .tolong {
+            background-color: #e2af50;
         }
-        .bgc-blue {
-            background-color: #b0daf5!important;
+        .pass{
+            background-color: aquamarine;
         }
     </style>
 </head>
@@ -62,7 +62,7 @@
                 <td>ZJJGTYDM</td>
             </tr>
             <tr>
-                <td class="fs11" bgcolor="#e6e6fa">※非空错误</td>
+                <td class="fs11 nullero" >※非空错误</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -71,7 +71,7 @@
                 <td></td>
             </tr>
             <tr>
-                <td class="fs11" bgcolor=" #e2af50">※超长错误</td>
+                <td class="fs11 tolong">※超长错误</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -80,7 +80,7 @@
                 <td></td>
             </tr>
             <tr>
-                <td class="fs11">※校验通过</td>
+                <td class="fs11 pass">※校验通过</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -100,7 +100,7 @@
                 <td></td>
             </tr>
             <tr>
-                <td class="bgc-blue"></td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -147,4 +147,13 @@
         
     </table>
 </body>
+
+<script>
+    // 获取所有数据主体因为返回的是一个数组，且只有一个就取第一个
+    let _tbody = document.getElementsByTagName("tbody")[0]
+
+
+
+</script>
+
 </html>
