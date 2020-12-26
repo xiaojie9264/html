@@ -47,6 +47,7 @@
         .pass {
             background-color: aquamarine;
         }
+
         /* 输入框的样式 */
         .inputText {
             width: 95%;
@@ -57,6 +58,7 @@
             outline-width: 0;
             outline-style: none;
         }
+
         thead th i {
             color: red;
         }
@@ -112,7 +114,7 @@
     </tr>
     <tr>
         <td rowspan="2">
-            <button class="data">数据校验</button>
+            <button class="data" onclick="dataCheck()">数据校验</button>
         </td>
         <td></td>
         <td></td>
@@ -191,6 +193,71 @@
     }
 
 
+    /**
+     * 按钮点击方法
+     */
+    let isNotNullCount = 0 // 非空错误统计
+    let isTooLongCount = 0 // 超长错误统计
+    function dataCheck() {
+        initDataStyle()
+        getAllTrs().forEach(tr => {
+            if (!isEmptyRow(tr)) alert("就差数据校验了")
+        })
+    }
+
+    /**
+     * 校验前先初始化数据背景
+     */
+    function initDataStyle() {
+        // 先将所有表格初始化为通过校验
+        isNotNullCuount = 0
+        isTooLongCont = 0
+        getAllTrs().forEach(tr =>{
+            getAllTds(tr).forEach(td =>{
+                td.className= "pass"
+            })
+        })
+    }
+
+    /**
+     * 判断是否是空行
+     */
+    const isEmptyRow = tr => {
+        let result = true // 默认为空行
+        getAllTds(tr).forEach(td =>{
+            let val = td.firstElementChild.value
+            if (isNotNull(val) && result) {
+                return !result
+            }
+        })
+        return result
+    };
+
+
+    /**
+     * 获取每行的数据列
+     * 因为有一个行合并所以有个不能从第二个开始
+     */
+    const getAllTds = tr => tr.children.length == colNum ? Object.values(tr.children).slice(1) : Object.values(tr.children)
+
+
+    /**
+     * 获取所有的数据行 从第一行开始取
+     * */
+    const getAllTrs = () => Object.values(_tr).slice(1)
+
+    /**
+     * 判断非空
+     * @param val 传入的值
+     */
+    const isNotNull = val => val != null && val !== ""
+
+    /**
+     * 判断是否超长
+     * @param val 传入值
+     * @param len 做大长度
+     */
+    const isTooLong = (val, len) => val.length > parseInt(len)
 </script>
 
 </html>
