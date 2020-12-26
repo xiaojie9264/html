@@ -201,7 +201,7 @@
     function dataCheck() {
         initDataStyle()
         getAllTrs().forEach(tr => {
-            if (!isEmptyRow(tr)) alert("就差数据校验了")
+            if (!isEmptyRow(tr)) checkData(tr)
         })
     }
 
@@ -218,6 +218,29 @@
             })
         })
     }
+    /**
+     * 开始校验数据
+     */
+    function checkData(tr) {
+        // 获取表头中的数据
+        let ths = document.getElementsByTagName("thead")[0].firstElementChild.children
+        getAllTds(tr).forEach((td,index) =>{
+            // 获取表头数据
+            let checker =  ths[index+1].innerText // index从0开始 对应表头第二列所以+1
+            let val = td.firstElementChild.value
+            if (checker.includes("*") && !isNotNull(val)) {　// 包含*的就是不能为空的
+                isNotNullCount++; // 为空的时候计数
+                td.className = "nullero"
+            }
+            if (checker.includes("(") && isNotNull(val)) { // 包含（）就指有长度校验，并且值不为空的情况下才校验
+                let len = checker.substring(checker.indexOf("(") + 1, checker.indexOf(")"))
+                if (isTooLong(val,len)) {
+                    isTooLongCount++; // 超长的时候计数
+                    td.className = "tolong"
+                }
+            }
+        })
+    }
 
     /**
      * 判断是否是空行
@@ -227,7 +250,8 @@
         getAllTds(tr).forEach(td =>{
             let val = td.firstElementChild.value
             if (isNotNull(val) && result) {
-                return !result
+                // 这里不能直接return，forEach相当于另一个方法体
+                result = !result
             }
         })
         return result
