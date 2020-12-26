@@ -6,7 +6,7 @@
     <title>Document</title>
     <style>
         th, td {
-            width: 100px;
+            width: 150px;
             height: 10px;
         }
 
@@ -47,18 +47,31 @@
         .pass {
             background-color: aquamarine;
         }
+        /* 输入框的样式 */
+        .inputText {
+            width: 95%;
+            height: 15px;
+            background: transparent;
+            border-style: none;
+            border-width: 0;
+            outline-width: 0;
+            outline-style: none;
+        }
+        thead th i {
+            color: red;
+        }
     </style>
 </head>
 <body>
 <table border="1" cellspacing="0" cellpadding="10">
     <thead>
     <th>字段中文名</th>
-    <th>中介机构代码</th>
-    <th>所属分支机构代码</th>
-    <th>中介机构名称</th>
-    <th>中介机构地址</th>
-    <th>中介机构类别</th>
-    <th>中介机构统一代码</th>
+    <th>中介机构代码<i>*(5)</i></th>
+    <th>所属分支机构代码<i>*(10)</i></th>
+    <th>中介机构名称<i>*(20)</i></th>
+    <th>中介机构地址<i>(30)</i></th>
+    <th>中介机构类别<i>*(3)</i></th>
+    <th>中介机构统一代码<i>*(5)</i></th>
     </thead>
     <tbody>
     <tr class="num1">
@@ -169,7 +182,11 @@
         // 因为有一个行合并所以有个不能从第二个开始
         let j = _td.length == colNum ? 1 : 0 // 和标准列数相同从第二列开始
         for (j; j < _td.length; j++) {
+            let _input = document.createElement("input") // 创建输入文本框
+            _input.type = "text" // 设置为文本输入
+            _input.className = "inputText"
             _td[j].className = "pass"
+            _td[j].appendChild(_input)
         }
     }
 
