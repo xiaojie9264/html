@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        tr {
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            font-size: 11px;
+        }
+        td {
+            width: 100px;
+        }
+        .bgc_grey {
+            background-color: grey;
+        }
+        .bgc_p {
+            background-color: #f5c5f3;
+        }
+        .bgc_y {
+            background-color: #cfa46b;
+        }
+        .bgc_pass {
+            background-color: #74aec5;
+        }
+    </style>
+</head>
+<body>
+    <table id="table" border="1" cellspacing = '0'></table>
+    <script>
+        var table = document.getElementById('table');
+        for (var i = 0; i < 10; i++) {
+            var tr = document.createElement('tr');
+            for (var j = 0; j < 6; j++) {
+                var td = document.createElement('td');
+                tr.appendChild(td);
+            }
+            table.appendChild(tr);
+        }
+         var trs = document.getElementsByTagName('tr');
+         trs[0].setAttribute('class', 'bgc_grey');
+         trs[1].setAttribute('class', 'bgc_grey');
+
+
+        //  trs[2].setAttribute('class', 'bgc_p');
+         trs[3].setAttribute('class', 'bgc_y');
+         trs[4].setAttribute('class', 'bgc_pass');
+         var tds_0 = trs[0].children;
+         var tds_1 = trs[1].children;
+         var tds_2 = trs[2].children;
+         var tds_3 = trs[3].children;
+         var tds_4 = trs[4].children;
+         var tds_5 = trs[5].children;
+         var tds_6 = trs[6].children;
+         tds_0[0].innerText = '字段中文名';
+         tds_0[1].innerText = '中介机构代码';
+         tds_0[2].innerText = '所属分支机构代码';
+         tds_0[3].innerText = '中介机构名称';
+         tds_0[4].innerText = '中介机构地址';
+         tds_0[5].innerText = '中介机构类别';
+         tds_1[0].innerText = '字段英文名';
+         tds_1[1].innerText = 'ZJJGDM';
+         tds_1[2].innerText = 'SSFZJGDM';
+         tds_1[3].innerText = 'ZJJGMC';
+         tds_1[4].innerText = 'ZJJGDZ';
+         tds_1[5].innerText = 'ZJJGLB';
+         tds_2[0].innerText = '※非空错误';
+         tds_3[0].innerText = '※超长错误';
+         tds_4[0].innerText = '※校验错误';
+         tds_5[0].innerText = '※数据校验';
+        //这里
+        tds_2[0].setAttribute('class', 'bgc_p');
+    </script>
+</body>
+</html>
