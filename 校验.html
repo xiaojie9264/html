@@ -30,7 +30,11 @@
             background-color: #ccc;
             width: 120px;
             height: 60px;
-            
+        }
+        input {
+            background: transparent;
+            border: none;
+            outline-style: none;
         }
     </style>
 </head>
@@ -69,7 +73,7 @@
         trs[6].removeChild(trs[6].lastChild);
         
         tds_0[0].innerText = '字段中文名';
-        tds_0[1].innerHTML = '中介机构代码<span style="color: red">*(50)</span>';
+        tds_0[1].innerHTML = '中介机构代码<span style="color: #ff0000">*(50)</span>';
         tds_0[2].innerHTML = '所属分支机构代码<span style="color: red">*(30)</span>';
         tds_0[3].innerHTML = '中介机构名称<span style="color: red">*(200)</span>';
         tds_0[4].innerHTML = '中介机构地址<span style="color: red">*(200)</span>';
@@ -86,12 +90,39 @@
         tds_5[0].appendChild(btn);
         
         
-        
+        // 继续我先把远程仓库给你加上权限人傻ing
+        for (let i = 2; i < trs.length; i++) {
+            for (let j = 0; j < trs[i].children.length; j++) {
+                if (trs[i].children.length == 6 && j==0) {
+                    continue;
+                }
+                trs[i].children[j].className = "bgc_pass";
+                let input = document.createElement("input");
+                trs[i].children[j].appendChild(input);
+            }
+        }
+
+
 
         // 点击事件单独抽离出来
         function _click(){
-            console.log(1111)
+            for (let i = 2; i < trs.length; i++) {
+                for (let j = 0; j < trs[i].children.length; j++) {
+                    if (trs[i].children.length == 6 && j==0) {
+                        continue;
+                    }
+                    let val = trs[i].children[j].firstElementChild.value;
+                    if (isTooLong(val, 2)) {
+                        trs[i].children[j].className = "bgc_y";
+                    }
+                }
+            }
         }
+
+        function isTooLong(val, len) {
+            return val.length > parseInt(len);
+        }
+
     </script>
 </body>
 </html>
