@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        tr {
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            font-size: 11px;
+        }
+        td {
+            width: 150px;
+        }
+        .bgc_grey {
+            background-color: grey;
+        }
+        .bgc_p {
+            background-color: #f5c5f3;
+        }
+        .bgc_y {
+            background-color: #cfa46b;
+        }
+        .bgc_pass {
+            background-color: #74aec5;
+        }
+        button {
+            background-color: #ccc;
+            width: 120px;
+            height: 60px;
+            
+        }
+    </style>
+</head>
+<body>
+    <table id="table" border="1" cellspacing = '0'></table>
+    <script>
+        var table = document.getElementById('table');
+        for (var i = 0; i < 10; i++) {
+            var tr = document.createElement('tr');
+            for (var j = 0; j < 6; j++) {
+                var td = document.createElement('td');
+                tr.appendChild(td);
+            }
+            table.appendChild(tr);
+        }
+        var trs = document.getElementsByTagName('tr');
+        var btn = document.createElement('button');
+        btn.innerText = "数据校验";
+        btn.onclick = _click;
+        trs[0].setAttribute('class', 'bgc_grey');
+        trs[1].setAttribute('class', 'bgc_grey');
+
+        var tds_0 = trs[0].children;
+        var tds_1 = trs[1].children;
+        var tds_2 = trs[2].children;
+        var tds_3 = trs[3].children;
+        var tds_4 = trs[4].children;
+        var tds_5 = trs[5].children;
+        var tds_6 = trs[6].children;
+        
+        tds_2[0].setAttribute('class', 'bgc_p');
+        tds_3[0].setAttribute('class', 'bgc_y');
+        tds_4[0].setAttribute('class', 'bgc_pass');
+        tds_5[0].setAttribute('rowspan', '2');
+
+        trs[6].removeChild(trs[6].lastChild);
+        
+        tds_0[0].innerText = '字段中文名';
+        tds_0[1].innerHTML = '中介机构代码<span style="color: red">*(50)</span>';
+        tds_0[2].innerHTML = '所属分支机构代码<span style="color: red">*(30)</span>';
+        tds_0[3].innerHTML = '中介机构名称<span style="color: red">*(200)</span>';
+        tds_0[4].innerHTML = '中介机构地址<span style="color: red">*(200)</span>';
+        tds_0[5].innerHTML = '中介机构类别<span style="color: red">*(50)</span>';
+        tds_1[0].innerText = '字段英文名';
+        tds_1[1].innerText = 'ZJJGDM';
+        tds_1[2].innerText = 'SSFZJGDM';
+        tds_1[3].innerText = 'ZJJGMC';
+        tds_1[4].innerText = 'ZJJGDZ';
+        tds_1[5].innerText = 'ZJJGLB';
+        tds_2[0].innerText = '※非空错误';
+        tds_3[0].innerText = '※超长错误';
+        tds_4[0].innerText = '※校验错误';
+        tds_5[0].appendChild(btn);
+        
+        
+        
+
+        // 点击事件单独抽离出来
+        function _click(){
+            console.log(1111)
+        }
+    </script>
+</body>
+</html>
