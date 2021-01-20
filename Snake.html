@@ -40,6 +40,30 @@
     snake.data = [{x: 2, y: 1}, {x: 1, y: 1}, {x: 0, y: 1}] // 蛇的参数
 
     /** 使用方向键控制蛇的移动 **/
+    document.onkeydown = function (event) {
+        let key = event.key
+        console.log(key)
+        switch (key) {
+            case "ArrowUp":
+                if (snake.towar != "D" && snake.towar != "U")
+                    snake.towar = "U"
+                break
+            case "ArrowDown":
+                if (snake.towar != "D" && snake.towar != "U")
+                    snake.towar = "D"
+                break
+            case "ArrowLeft":
+                if (snake.towar != "L" && snake.towar != "R")
+                    snake.towar = "L"
+                break
+            case "ArrowRight":
+                if (snake.towar != "R" && snake.towar != "L")
+                    snake.towar = "R"
+                break
+        }
+
+
+    }
 
     /** 获取到主界面的参数 **/
     let game_main = document.getElementsByClassName("_main")[0]
@@ -83,7 +107,6 @@
                 head.y += 1
                 break
         }
-        console.log(head)
         snake.data.unshift(head)
         snake.data.pop()
         // 移动后重新绘制
