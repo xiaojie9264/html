@@ -20,6 +20,14 @@
         background-color: white;
         position: absolute; /* 使用绝对布局 */
     }
+
+    ._food_color {
+        width: 20px;
+        height: 20px;
+        border: none;
+        background-color: red;
+        position: absolute; /* 使用绝对布局 */
+    }
 </style>
 <body>
 <div class="_main">
@@ -39,10 +47,16 @@
     snake.size = 20 // 蛇的单元大小
     snake.data = [{x: 2, y: 1}, {x: 1, y: 1}, {x: 0, y: 1}] // 蛇的参数
 
+    /** 定义的食物坐标 **/
+    let food = new Object();
+    food.isEat = true;
+    food.x = 0
+    food.y = 0
+    // 食物的元素
+    let _food
     /** 使用方向键控制蛇的移动 **/
     document.onkeydown = function (event) {
         let key = event.key
-        console.log(key)
         switch (key) {
             case "ArrowUp":
                 if (snake.towar != "D" && snake.towar != "U")
@@ -69,8 +83,9 @@
     let game_main = document.getElementsByClassName("_main")[0]
     /**画出蛇的形态**/
     const drawSnake = () => {
-        // 画之前先清空所有的东邪
+        // 画之前先清空所有的蛇
         game_main.innerHTML = ""
+        game_main.appendChild(_food) // 先添加食物
         for (let i = 0; i < snake.data.length; i++) {
             // 计算出每个单元的位置
             let x = snake.data[i].x * snake.size // 每一节的第一个数字
@@ -80,6 +95,23 @@
             _body.className = "_snake"
             _body.setAttribute("style", "margin-left:" + x + "px;margin-top:" + y + "px")
             game_main.appendChild(_body)
+        }
+    }
+    /** 画出食物 **/
+    const createFood = () => {
+        // 生成一个食物的坐标
+        if (food.isEat) {
+            food.x = Math.floor(Math.random() * width / 20)
+            food.y = Math.floor(Math.random() * height / 20)
+            food.isEat = false
+
+            // 计算出每个单元的位置
+            let x = food.x * 20 // 每一节的第一个数字
+            let y = food.y * 20 // 每一节的第二个数字
+            // 创建食物的元素
+            _food = document.createElement("div")
+            _food.className = "_food_color"
+            _food.setAttribute("style", "margin-left:" + x + "px;margin-top:" + y + "px")
         }
     }
     /**蛇移动**/
@@ -109,16 +141,18 @@
         }
         snake.data.unshift(head)
         snake.data.pop()
+
         // 移动后重新绘制
         drawSnake()
         setTimeout(snakeMove, 500) // 方法执行完后再500ms后再次执行
     }
-
     // 页面初始画的时候创建 这个方法可有可无 本来这个就会加载
     window.onload = function () {
         console.log("开始")
+        createFood()
         drawSnake()
         snakeMove()
+
     }
 
 </script>
