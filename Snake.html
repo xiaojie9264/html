@@ -12,28 +12,91 @@
         margin: 30px auto;
         border: black solid 2px;
     }
+
+    ._snake {
+        width: 20px;
+        height: 20px;
+        border: none;
+        background-color: white;
+        position: absolute; /* 使用绝对布局 */
+    }
 </style>
 <body>
 <div class="_main">
-
 </div>
 </body>
 <script>
     // 窗口宽高
     const width = 800
     const height = 500;
+    // 计时器
+    let game_timer
 
-    /** 蛇头位置 **/
-    let snake_head = {
-        x: 2,
-        y: 1
+
+    // 构建蛇的对象
+    let snake = new Object()
+    snake.towar = "R" // 初始方向
+    snake.size = 20 // 蛇的单元大小
+    snake.data = [{x: 2, y: 1}, {x: 1, y: 1}, {x: 0, y: 1}] // 蛇的参数
+
+    /** 使用方向键控制蛇的移动 **/
+
+    /** 获取到主界面的参数 **/
+    let game_main = document.getElementsByClassName("_main")[0]
+    /**画出蛇的形态**/
+    const drawSnake = () => {
+        // 画之前先清空所有的东邪
+        game_main.innerHTML = ""
+        for (let i = 0; i < snake.data.length; i++) {
+            // 计算出每个单元的位置
+            let x = snake.data[i].x * snake.size // 每一节的第一个数字
+            let y = snake.data[i].y * snake.size // 每一节的第二个数字
+            // 使用div表示所有的蛇身体
+            let _body = document.createElement("div")
+            _body.className = "_snake"
+            _body.setAttribute("style", "margin-left:" + x + "px;margin-top:" + y + "px")
+            game_main.appendChild(_body)
+        }
+    }
+    /**蛇移动**/
+    const snakeMove = () => {
+        /* 蛇移动的时候可以理解为下一节继承上一节的参数，可以使用循环操作
+        * 这里使用去头丢尾的操作,获取到头部的坐标
+        * */
+        let head = {
+            x: snake.data[0].x,
+            y: snake.data[0].y
+        }
+
+        // 移动
+        switch (snake.towar) {
+            case "R": // 向右x增加
+                head.x += 1
+                break
+            case "L": // 向左x减少
+                head.x -= 1
+                break
+            case "U": // 向上Y减少
+                head.y -= 1
+                break
+            case "D": // 向下Y增加
+                head.y += 1
+                break
+        }
+        console.log(head)
+        snake.data.unshift(head)
+        snake.data.pop()
+        // 移动后重新绘制
+        drawSnake()
+        setTimeout(snakeMove, 500) // 方法执行完后再500ms后再次执行
     }
 
-    // 创建蛇的初始化身体 用数组表示
-    let snake = {snake_head,snake_head}
-
-
-
+    // 页面初始画的时候创建 这个方法可有可无 本来这个就会加载
+    window.onload = function () {
+        console.log("开始")
+        drawSnake()
+        snakeMove()
+    }
 
 </script>
 </html>
