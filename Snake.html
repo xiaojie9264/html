@@ -46,6 +46,10 @@
     snake.towar = "R" // 初始方向
     snake.size = 20 // 蛇的单元大小
     snake.data = [{x: 2, y: 1}, {x: 1, y: 1}, {x: 0, y: 1}] // 蛇的参数
+    snake.maxX = width / snake.size - 1
+    snake.minX = 0
+    snake.maxY = height / snake.size - 1
+    snake.minY = 0
 
     /** 定义的食物坐标 **/
     let food = new Object();
@@ -101,6 +105,7 @@
     const createFood = () => {
         // 生成一个食物的坐标
         if (food.isEat) {
+            console.log("创建食物")
             food.x = Math.floor(Math.random() * width / 20)
             food.y = Math.floor(Math.random() * height / 20)
             food.isEat = false
@@ -127,24 +132,30 @@
         // 移动
         switch (snake.towar) {
             case "R": // 向右x增加
-                head.x += 1
+                head.x = head.x === snake.maxX ? snake.minX : head.x + 1
                 break
             case "L": // 向左x减少
-                head.x -= 1
+                head.x = head.x === snake.minX ? snake.maxX : head.x - 1
                 break
             case "U": // 向上Y减少
-                head.y -= 1
+                head.y = head.y === snake.minY ? snake.maxY : head.y - 1
                 break
             case "D": // 向下Y增加
-                head.y += 1
+                head.y = head.y === snake.maxY ? snake.minY : head.y + 1
                 break
         }
         snake.data.unshift(head)
-        snake.data.pop()
-
+        // 吃到食物的情况下不减少尾巴
+        if (head.x == food.x && head.y == food.y) { // 蛇头和食物的坐标重合就算吃到食物
+            food.isEat = true
+            console.log("吃到食物了")
+            createFood()
+        } else { // 没吃到食物就减少尾部
+            snake.data.pop() // 减少尾部
+        }
         // 移动后重新绘制
         drawSnake()
-        setTimeout(snakeMove, 500) // 方法执行完后再500ms后再次执行
+        setTimeout(snakeMove, 300) // 方法执行完后再500ms后再次执行
     }
     // 页面初始画的时候创建 这个方法可有可无 本来这个就会加载
     window.onload = function () {
